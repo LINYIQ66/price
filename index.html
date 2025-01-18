@@ -71,7 +71,11 @@
                 Europe: 1550,
                 Japan: 276100,
                 Australia: 3150,
-                Canada: 2670
+                Canada: 2670,
+                China: 15800,
+                HongKong: 16800,
+                Taiwan: 47000,
+                Korea: 2900000
             };
 
             const countryRates = {
@@ -79,7 +83,11 @@
                 Europe: ratesData.rates.EUR,
                 Japan: ratesData.rates.JPY,
                 Australia: ratesData.rates.AUD,
-                Canada: ratesData.rates.CAD
+                Canada: ratesData.rates.CAD,
+                China: ratesData.rates.CNY,
+                HongKong: ratesData.rates.HKD,
+                Taiwan: ratesData.rates.TWD,
+                Korea: ratesData.rates.KRW
             };
 
             const resultsDiv = document.getElementById('results');
@@ -105,6 +113,16 @@
         <select id="brand">
             <option value="">-- Choose a Brand --</option>
             <option value="lv">Louis Vuitton</option>
+            <option value="gucci">Gucci</option>
+            <option value="prada">Prada</option>
+            <option value="chanel">Chanel</option>
+            <option value="hermes">Hermès</option>
+            <option value="dior">Dior</option>
+            <option value="versace">Versace</option>
+            <option value="burberry">Burberry</option>
+            <option value="balenciaga">Balenciaga</option>
+            <option value="celine">Celine</option>
+            <option value="fendi">Fendi</option>
         </select>
 
         <label for="product">Select Product:</label>

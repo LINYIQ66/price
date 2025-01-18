@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Comparison Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        select, button {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .results {
+            margin-top: 1rem;
+        }
+        .price-item {
+            padding: 0.8rem;
+            border-bottom: 1px solid #ddd;
+        }
+        .price-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+    <script>
+        async function fetchPrices() {
+            const brand = document.getElementById('brand').value;
+            const product = document.getElementById('product').value;
+
+            if (!brand || !product) {
+                alert('Please select a brand and product.');
+                return;
+            }
+
+            const ratesResponse = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+            const ratesData = await ratesResponse.json();
+            
+            const prices = {
+                USA: 2100,
+                Europe: 1550,
+                Japan: 276100,
+                Australia: 3150,
+                Canada: 2670
+            };
+
+            const countryRates = {
+                USA: 1,
+                Europe: ratesData.rates.EUR,
+                Japan: ratesData.rates.JPY,
+                Australia: ratesData.rates.AUD,
+                Canada: ratesData.rates.CAD
+            };
+
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            Object.keys(prices).forEach(country => {
+                const priceInUSD = prices[country];
+                const priceInLocal = (priceInUSD * countryRates[country]).toFixed(2);
+                const priceElement = document.createElement('div');
+                priceElement.classList.add('price-item');
+                priceElement.textContent = `${country}: ${priceInLocal} (${priceInUSD} USD)`;
+                resultsDiv.appendChild(priceElement);
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Price Comparison Tool</h1>
+    </header>
+    <div class="container">
+        <label for="brand">Select Brand:</label>
+        <select id="brand">
+            <option value="">-- Choose a Brand --</option>
+            <option value="lv">Louis Vuitton</option>
+        </select>
+
+        <label for="product">Select Product:</label>
+        <select id="product">
+            <option value="">-- Choose a Product --</option>
+            <option value="neverfull">Neverfull GM</option>
+            <option value="alma">Alma BB</option>
+        </select>
+
+        <button onclick="fetchPrices()">Compare Prices</button>
+
+        <div id="results" class="results"></div>
+    </div>
+</body>
+</html>

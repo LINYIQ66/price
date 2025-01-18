@@ -65,17 +65,18 @@
 
             const ratesResponse = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
             const ratesData = await ratesResponse.json();
-            
+
             const prices = {
-                USA: 2100.00,
-                Europe: 1508.15,
-                Japan: 43079883.00,
-                Australia: 5071.50,
-                Canada: 3844.80,
-                China: 115972.00,
-                HongKong: 130872.00,
-                Taiwan: 1546300.00,
-                Korea: 4227156000.00
+                lv: {
+                    "Neverfull GM": { USA: 2100.00, Europe: 1508.15, Japan: 43079883.00, Australia: 5071.50, Canada: 3844.80, China: 115972.00, HongKong: 130872.00, Taiwan: 1546300.00, Korea: 4227156000.00 },
+                    "Alma BB": { USA: 1820.00, Europe: 1327.15, Japan: 37079883.00, Australia: 4371.50, Canada: 3344.80, China: 105972.00, HongKong: 120872.00, Taiwan: 1446300.00, Korea: 3927156000.00 },
+                    // Add more LV products with corresponding prices here
+                },
+                gucci: {
+                    "Dionysus": { USA: 2500.00, Europe: 1808.15, Japan: 47079883.00, Australia: 6071.50, Canada: 4544.80, China: 135972.00, HongKong: 150872.00, Taiwan: 1746300.00, Korea: 4727156000.00 },
+                    "Marmont": { USA: 2000.00, Europe: 1458.15, Japan: 40079883.00, Australia: 5071.50, Canada: 3844.80, China: 115972.00, HongKong: 130872.00, Taiwan: 1546300.00, Korea: 4227156000.00 },
+                    // Add more Gucci products with corresponding prices here
+                }
             };
 
             const countryRates = {
@@ -93,8 +94,10 @@
             const resultsDiv = document.getElementById('results');
             resultsDiv.innerHTML = '';
 
-            Object.keys(prices).forEach(country => {
-                const priceInUSD = prices[country];
+            const selectedPrices = prices[brand][product];
+
+            Object.keys(selectedPrices).forEach(country => {
+                const priceInUSD = selectedPrices[country];
                 const priceInLocal = (priceInUSD * countryRates[country]).toFixed(2);
                 const priceElement = document.createElement('div');
                 priceElement.classList.add('price-item');
@@ -109,14 +112,14 @@
             productSelect.innerHTML = '<option value="">-- Choose a Product --</option>';
 
             const products = {
-                lv: ["Neverfull GM", "Alma BB", "Speedy 25", "Noé", "Capucines", "Onthego GM", "Twist MM", "Pochette Métis", "Petite Malle", "Keepall Bandoulière 50"],
-                gucci: ["Dionysus", "Marmont", "Horsebit 1955", "Jackie 1961", "Ophidia", "Sylvie", "GG Tote", "Padlock Bag", "Zumi", "Broadway"]
+                lv: ["Neverfull GM", "Alma BB"],
+                gucci: ["Dionysus", "Marmont"]
             };
 
             if (products[brand]) {
                 products[brand].forEach(product => {
                     const option = document.createElement('option');
-                    option.value = product.toLowerCase().replace(/\s+/g, '');
+                    option.value = product;
                     option.textContent = product;
                     productSelect.appendChild(option);
                 });

@@ -68,15 +68,29 @@
 
             const prices = {
                 lv: {
-                    "Neverfull GM": { USA: 2100.00, Europe: 1508.15, Japan: 43079883.00, Australia: 5071.50, Canada: 3844.80, China: 115972.00, HongKong: 130872.00, Taiwan: 1546300.00, Korea: 4227156000.00 },
-                    "Alma BB": { USA: 1820.00, Europe: 1327.15, Japan: 37079883.00, Australia: 4371.50, Canada: 3344.80, China: 105972.00, HongKong: 120872.00, Taiwan: 1446300.00, Korea: 3927156000.00 },
-                    // Add more LV products with corresponding prices here
+                    "Neverfull GM": { USA: 2100.00, Europe: 1508.15, Japan: 1800.00, Australia: 5071.50, Canada: 3844.80, China: 115972.00, HongKong: 130872.00, Taiwan: 1500.00, Korea: 1600.00 },
+                    "Alma BB": { USA: 1820.00, Europe: 1327.15, Japan: 1600.00, Australia: 4371.50, Canada: 3344.80, China: 105972.00, HongKong: 120872.00, Taiwan: 1400.00, Korea: 1500.00 },
                 },
                 gucci: {
-                    "Dionysus": { USA: 2500.00, Europe: 1808.15, Japan: 47079883.00, Australia: 6071.50, Canada: 4544.80, China: 135972.00, HongKong: 150872.00, Taiwan: 1746300.00, Korea: 4727156000.00 },
-                    "Marmont": { USA: 2000.00, Europe: 1458.15, Japan: 40079883.00, Australia: 5071.50, Canada: 3844.80, China: 115972.00, HongKong: 130872.00, Taiwan: 1546300.00, Korea: 4227156000.00 },
-                    // Add more Gucci products with corresponding prices here
-                }
+                    "Dionysus": { USA: 2500.00, Europe: 1808.15, Japan: 1900.00, Australia: 6071.50, Canada: 4544.80, China: 135972.00, HongKong: 150872.00, Taiwan: 1700.00, Korea: 1800.00 },
+                    "Marmont": { USA: 2000.00, Europe: 1458.15, Japan: 1700.00, Australia: 5071.50, Canada: 3844.80, China: 115972.00, HongKong: 130872.00, Taiwan: 1600.00, Korea: 1700.00 },
+                },
+                prada: {
+                    "Galleria": { USA: 3000.00, Europe: 2100.00, Japan: 2500.00, Australia: 4000.00, Canada: 3800.00, China: 15000.00, HongKong: 18000.00, Taiwan: 2000.00, Korea: 2200.00 },
+                    "Diagramme": { USA: 2700.00, Europe: 1900.00, Japan: 2300.00, Australia: 3500.00, Canada: 3300.00, China: 14000.00, HongKong: 17000.00, Taiwan: 1800.00, Korea: 2100.00 },
+                },
+                chanel: {
+                    "Classic Flap": { USA: 8800.00, Europe: 7500.00, Japan: 8400.00, Australia: 9200.00, Canada: 8900.00, China: 62000.00, HongKong: 68000.00, Taiwan: 7000.00, Korea: 7600.00 },
+                    "Boy Bag": { USA: 6700.00, Europe: 5800.00, Japan: 6500.00, Australia: 7000.00, Canada: 6800.00, China: 45000.00, HongKong: 48000.00, Taiwan: 6000.00, Korea: 6300.00 },
+                },
+                hermes: {
+                    "Birkin 25": { USA: 11000.00, Europe: 9500.00, Japan: 10000.00, Australia: 12000.00, Canada: 11500.00, China: 80000.00, HongKong: 85000.00, Taiwan: 9000.00, Korea: 9500.00 },
+                    "Kelly 28": { USA: 10500.00, Europe: 9200.00, Japan: 9800.00, Australia: 11500.00, Canada: 11200.00, China: 78000.00, HongKong: 83000.00, Taiwan: 8800.00, Korea: 9200.00 },
+                },
+                versace: {
+                    "Medusa Tote": { USA: 1800.00, Europe: 1500.00, Japan: 1700.00, Australia: 2000.00, Canada: 1900.00, China: 12000.00, HongKong: 12500.00, Taiwan: 1600.00, Korea: 1700.00 },
+                    "Virtus Bag": { USA: 2200.00, Europe: 1800.00, Japan: 2000.00, Australia: 2400.00, Canada: 2300.00, China: 14000.00, HongKong: 14500.00, Taiwan: 1900.00, Korea: 2000.00 },
+                },
             };
 
             const countryRates = {
@@ -113,7 +127,11 @@
 
             const products = {
                 lv: ["Neverfull GM", "Alma BB"],
-                gucci: ["Dionysus", "Marmont"]
+                gucci: ["Dionysus", "Marmont"],
+                prada: ["Galleria", "Diagramme"],
+                chanel: ["Classic Flap", "Boy Bag"],
+                hermes: ["Birkin 25", "Kelly 28"],
+                versace: ["Medusa Tote", "Virtus Bag"]
             };
 
             if (products[brand]) {
@@ -137,6 +155,10 @@
             <option value="">-- Choose a Brand --</option>
             <option value="lv">Louis Vuitton</option>
             <option value="gucci">Gucci</option>
+            <option value="prada">Prada</option>
+            <option value="chanel">Chanel</option>
+            <option value="hermes">Hermès</option>
+            <option value="versace">Versace</option>
         </select>
 
         <label for="product">Select Product:</label>

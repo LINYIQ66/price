@@ -67,15 +67,15 @@
             const ratesData = await ratesResponse.json();
             
             const prices = {
-                USA: 2100,
-                Europe: 1550,
-                Japan: 276100,
-                Australia: 3150,
-                Canada: 2670,
-                China: 15800,
-                HongKong: 16800,
-                Taiwan: 47000,
-                Korea: 2900000
+                USA: 2100.00,
+                Europe: 1508.15,
+                Japan: 43079883.00,
+                Australia: 5071.50,
+                Canada: 3844.80,
+                China: 115972.00,
+                HongKong: 130872.00,
+                Taiwan: 1546300.00,
+                Korea: 4227156000.00
             };
 
             const countryRates = {
@@ -102,6 +102,26 @@
                 resultsDiv.appendChild(priceElement);
             });
         }
+
+        function updateProducts() {
+            const brand = document.getElementById('brand').value;
+            const productSelect = document.getElementById('product');
+            productSelect.innerHTML = '<option value="">-- Choose a Product --</option>';
+
+            const products = {
+                lv: ["Neverfull GM", "Alma BB", "Speedy 25", "Noé", "Capucines", "Onthego GM", "Twist MM", "Pochette Métis", "Petite Malle", "Keepall Bandoulière 50"],
+                gucci: ["Dionysus", "Marmont", "Horsebit 1955", "Jackie 1961", "Ophidia", "Sylvie", "GG Tote", "Padlock Bag", "Zumi", "Broadway"]
+            };
+
+            if (products[brand]) {
+                products[brand].forEach(product => {
+                    const option = document.createElement('option');
+                    option.value = product.toLowerCase().replace(/\s+/g, '');
+                    option.textContent = product;
+                    productSelect.appendChild(option);
+                });
+            }
+        }
     </script>
 </head>
 <body>
@@ -110,26 +130,15 @@
     </header>
     <div class="container">
         <label for="brand">Select Brand:</label>
-        <select id="brand">
+        <select id="brand" onchange="updateProducts()">
             <option value="">-- Choose a Brand --</option>
             <option value="lv">Louis Vuitton</option>
             <option value="gucci">Gucci</option>
-            <option value="prada">Prada</option>
-            <option value="chanel">Chanel</option>
-            <option value="hermes">Hermès</option>
-            <option value="dior">Dior</option>
-            <option value="versace">Versace</option>
-            <option value="burberry">Burberry</option>
-            <option value="balenciaga">Balenciaga</option>
-            <option value="celine">Celine</option>
-            <option value="fendi">Fendi</option>
         </select>
 
         <label for="product">Select Product:</label>
         <select id="product">
             <option value="">-- Choose a Product --</option>
-            <option value="neverfull">Neverfull GM</option>
-            <option value="alma">Alma BB</option>
         </select>
 
         <button onclick="fetchPrices()">Compare Prices</button>
